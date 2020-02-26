@@ -50,84 +50,183 @@ class _MyHomePageState extends State<MyHomePage> {
       'StonesPlaced': 0,
       'SkyStoneBonus': 0
     },
+    {
+      'StonesDelivered': 0,
+      'StonesPlaced': 0,
+      'SkyScraperHeight': 0,
+    }
   ];
-  void updateFirstBot () {
+  void updateFirstBot() {
     setState(() {
-                    data[0]['ParkedBots1'] = !(data[0]['ParkedBots1']);
-                  });
+      data[0]['ParkedBots1'] = !(data[0]['ParkedBots1']);
+    });
   }
-  void updateFundation (val) {
+
+  void updateFundation(val) {
     setState(() {
-                      data[0]['Fundation'] = val;
-                    });
+      data[0]['Fundation'] = val as bool;
+    });
   }
-  void updateSecondBot () {
+
+  void updateSecondBot() {
     setState(() {
-                    data[0]['ParkedBots2'] = !data[0]['ParkedBots2'];
-                  });
+      data[0]['ParkedBots2'] = !data[0]['ParkedBots2'];
+    });
   }
-  void decreaseStonesDelivered () {
+
+  void decreaseStonesDelivered() {
     setState(() {
-                          int x = data[0]['StonesDelivered'];
-                          if (x > 0) {
-                            data[0]['StonesDelivered'] =
-                                (data[0]['StonesDelivered'] as int) - 1;
-                            x = data[0]['StonesDelivered'];
-                            final int y = data[0]['StonesPlaced'];
-                            if (x < y) {
-                              data[0]['StonesPlaced'] =
-                                  (data[0]['StonesPlaced'] as int) - 1;
-                            }
-                          }
-                        });
+      int x = data[0]['StonesDelivered'];
+      if (x > 0) {
+        data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) - 1;
+        x = data[0]['StonesDelivered'];
+        int y = data[0]['StonesPlaced'];
+        if (x < y) {
+          data[0]['StonesPlaced'] = (data[0]['StonesPlaced'] as int) - 1;
+        }
+        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
+        x = data[1]['StonesDelivered'];
+        y = data[1]['StonesPlaced'];
+        if (x < y) {
+          data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        }
+      }
+    });
   }
-  void increaseStonesDelivered () {
+
+  void increaseStonesDelivered() {
     setState(() {
-                          data[0]['StonesDelivered'] =
-                              (data[0]['StonesDelivered'] as int) + 1;
-                        });
+      data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) + 1;
+      data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+    });
   }
-  void decreaseStonesPlaced () {
+
+  void decreaseStonesPlaced() {
     setState(() {
-                          int x = data[0]['StonesPlaced'];
-                          if (x > 0) {
-                            data[0]['StonesPlaced'] =
-                                (data[0]['StonesPlaced'] as int) - 1;
-                            x = data[0]['StonesDelivered'] as int;
-                            final int y = data[0]['StonesPlaced'] as int;
-                            if ((x < y))
-                              data[0]['StonesDelivered'] =
-                                  (data[0]['StonesDelivered'] as int) - 1;
-                          }
-                        });
+      int x = data[0]['StonesPlaced'];
+      if (x > 0) {
+        data[0]['StonesPlaced'] = (data[0]['StonesPlaced'] as int) - 1;
+        x = data[0]['StonesDelivered'] as int;
+        int y = data[0]['StonesPlaced'] as int;
+        if ((x < y))
+          data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) - 1;
+
+        data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        x = data[1]['StonesDelivered'] as int;
+        y = data[1]['StonesPlaced'] as int;
+        if ((x < y))
+          data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
+      }
+    });
   }
-  void increaseStonesPlaced () {
+
+  void increaseStonesPlaced() {
     setState(() {
-                          data[0]['StonesPlaced'] =
-                              (data[0]['StonesPlaced'] as int) + 1;
-                          final int x = data[0]['StonesDelivered'] as int;
-                          final int y = data[0]['StonesPlaced'] as int;
-                          if (x < y)
-                            data[0]['StonesDelivered'] =
-                                (data[0]['StonesDelivered'] as int) + 1;
-                        });
+      data[0]['StonesPlaced'] = (data[0]['StonesPlaced'] as int) + 1;
+      int x = data[0]['StonesDelivered'] as int;
+      int y = data[0]['StonesPlaced'] as int;
+      if (x < y)
+        data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) + 1;
+      data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
+      x = data[1]['StonesDelivered'] as int;
+      y = data[1]['StonesPlaced'] as int;
+      if (x < y)
+        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+    });
   }
-  void decreaseSkystoneBonus () {
+
+  void decreaseSkystoneBonus() {
     setState(() {
-                          final int x = data[0]['SkyStoneBonus'];
-                          if (x > 0)
-                            data[0]['SkyStoneBonus'] =
-                                (data[0]['SkyStoneBonus'] as int) - 1;
-                        });
+      final int x = data[0]['SkyStoneBonus'];
+      if (x > 0)
+        data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) - 1;
+    });
   }
-  void increaseSkystoneBonus () {
+
+  void increaseSkystoneBonus() {
     setState(() {
-                          final int x = data[0]['SkyStoneBonus'];
-                          if (x < 2)
-                            data[0]['SkyStoneBonus'] =
-                                (data[0]['SkyStoneBonus'] as int) + 1;
-                        });
+      final int x = data[0]['SkyStoneBonus'];
+      if (x < 2)
+        data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) + 1;
+    });
   }
+
+  void increaseStonesPlacedTeleop() {
+    setState(() {
+      data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
+      final int x = data[1]['StonesDelivered'] as int;
+      final int y = data[1]['StonesPlaced'] as int;
+      if (x < y)
+        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+    });
+  }
+
+  void decreaseStonesPlacedTeleop() {
+    setState(() {
+      int x = data[1]['StonesPlaced'];
+      if (x > 0) {
+        data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        x = data[1]['StonesDelivered'] as int;
+        final int y = data[1]['StonesPlaced'] as int;
+        final int z = data[1]['SkyScraperHeight'];
+        if ((y < z))
+          data[1]['SkyScraperHeight'] =
+              (data[1]['SkyScraperHeight'] as int) - 1;
+      }
+    });
+  }
+
+  void increaseStonesDeliveredTeleop() {
+    setState(() {
+      data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+    });
+  }
+
+  void decreaseStonesDeliveredTeleop() {
+    setState(() {
+      int x = data[1]['StonesDelivered'];
+      if (x > 0) {
+        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
+        x = data[1]['StonesDelivered'];
+        int y = data[1]['StonesPlaced'];
+        int z = data[1]['SkyScraperHeight'];
+        if (x < y) {
+          data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        }
+        if (y < z) {
+          data[1]['SkyScraperHeight'] =
+              (data[1]['SkyScraperHeight'] as int) - 1;
+        }
+      }
+    });
+  }
+
+  void increaseSkyScraperHeight() {
+    setState(() {
+      data[1]['SkyScraperHeight'] = (data[1]['SkyScraperHeight'] as int) + 1;
+      int x = data[1]['SkyScraperHeight'] as int;
+      int y = data[1]['StonesDelivered'] as int;
+      int z = data[1]['StonesPlaced'] as int;
+      if (x > y) {
+        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+      }
+      if (x > z) {
+        data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
+      }
+    });
+  }
+
+  void decreaseSkyScraperHeight() {
+    setState(() {
+      int x = data[1]['SkyScraperHeight'] as int;
+      int y = data[1]['StonesDelivered'] as int;
+      int z = data[1]['StonesPlaced'] as int;
+      if (x > 0) {
+        data[1]['SkyScraperHeight'] = (data[1]['SkyScraperHeight'] as int) - 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = Platform.isIOS
@@ -153,27 +252,35 @@ class _MyHomePageState extends State<MyHomePage> {
             body: Column(
               children: <Widget>[
                 Container(
-                  height:( MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top )*0.3,
-                  width: double.infinity,
-                  child: ScoreShower(data)
-                  ),
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.3,
+                    width: double.infinity,
+                    child: ScoreShower(data)),
                 Container(
-                    height:( MediaQuery.of(context).size.height -
-                        appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top )*0.7,
-                      width: double.infinity,
-                    child: ScoreChanger(data, updateFirstBot: updateFirstBot,
-            updateSecondBot: updateSecondBot,
-            updateFundation: updateFundation,
-            increaseSkystoneBonus: increaseSkystoneBonus,
-            increaseStonesDelivered: increaseStonesDelivered,
-            increaseStonesPlaced: increaseStonesPlaced,
-            decreaseSkystoneBonus: decreaseSkystoneBonus,
-            decreaseStonesDelivered: decreaseStonesDelivered,
-            decreaseStonesPlaced: decreaseStonesPlaced)
-                    ),
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    width: double.infinity,
+                    child: ScoreChanger(data,
+                        updateFirstBot: updateFirstBot,
+                        updateSecondBot: updateSecondBot,
+                        updateFundation: updateFundation,
+                        increaseSkystoneBonus: increaseSkystoneBonus,
+                        increaseStonesDelivered: increaseStonesDelivered,
+                        increaseStonesPlaced: increaseStonesPlaced,
+                        decreaseSkystoneBonus: decreaseSkystoneBonus,
+                        decreaseStonesDelivered: decreaseStonesDelivered,
+                        decreaseStonesPlaced: decreaseStonesPlaced,
+                        decreaseSkyScraperHeight: decreaseSkyScraperHeight,
+                        decreaseStonesDeliveredTeleop: decreaseStonesDeliveredTeleop,
+                        decreaseStonesPlacedTeleop: decreaseStonesPlacedTeleop,
+                        increaseSkyScraperHeight: increaseSkyScraperHeight,
+                        increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
+                        increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
+                        )),
               ],
             ),
           );

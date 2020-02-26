@@ -50,7 +50,7 @@ class _BuildAutoState extends State<BuildAuto> {
               Switch.adaptive(
                   value: widget.data['Fundation'],
                   onChanged: (val) {
-                    widget.updateFundation();
+                    widget.updateFundation(val);
                   }),
             ],
           ),
@@ -86,7 +86,7 @@ class _BuildAutoState extends State<BuildAuto> {
                 children: <Widget>[
                   Text('Stones Delivered:'),
                   IconButton(
-                      icon: Icon(Icons.arrow_downward),
+                      icon: Icon(Icons.remove),
                       color: Theme.of(context).accentColor,
                       onPressed: () {
                         widget.decreaseStonesDelivered();
@@ -94,7 +94,7 @@ class _BuildAutoState extends State<BuildAuto> {
                   Text(widget.data['StonesDelivered'].toString()),
                   IconButton(
                       color: Theme.of(context).accentColor,
-                      icon: Icon(Icons.arrow_upward),
+                      icon: Icon(Icons.add),
                       onPressed: () {
                         widget.increaseStonesDelivered();
                       }),
