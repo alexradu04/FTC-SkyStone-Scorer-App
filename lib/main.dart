@@ -35,7 +35,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   List<Map<String, Object>> data = [
     {
       'Fundation': false,
@@ -46,6 +51,83 @@ class MyHomePage extends StatelessWidget {
       'SkyStoneBonus': 0
     },
   ];
+  void updateFirstBot () {
+    setState(() {
+                    data[0]['ParkedBots1'] = !(data[0]['ParkedBots1']);
+                  });
+  }
+  void updateFundation (val) {
+    setState(() {
+                      data[0]['Fundation'] = val;
+                    });
+  }
+  void updateSecondBot () {
+    setState(() {
+                    data[0]['ParkedBots2'] = !data[0]['ParkedBots2'];
+                  });
+  }
+  void decreaseStonesDelivered () {
+    setState(() {
+                          int x = data[0]['StonesDelivered'];
+                          if (x > 0) {
+                            data[0]['StonesDelivered'] =
+                                (data[0]['StonesDelivered'] as int) - 1;
+                            x = data[0]['StonesDelivered'];
+                            final int y = data[0]['StonesPlaced'];
+                            if (x < y) {
+                              data[0]['StonesPlaced'] =
+                                  (data[0]['StonesPlaced'] as int) - 1;
+                            }
+                          }
+                        });
+  }
+  void increaseStonesDelivered () {
+    setState(() {
+                          data[0]['StonesDelivered'] =
+                              (data[0]['StonesDelivered'] as int) + 1;
+                        });
+  }
+  void decreaseStonesPlaced () {
+    setState(() {
+                          int x = data[0]['StonesPlaced'];
+                          if (x > 0) {
+                            data[0]['StonesPlaced'] =
+                                (data[0]['StonesPlaced'] as int) - 1;
+                            x = data[0]['StonesDelivered'] as int;
+                            final int y = data[0]['StonesPlaced'] as int;
+                            if ((x < y))
+                              data[0]['StonesDelivered'] =
+                                  (data[0]['StonesDelivered'] as int) - 1;
+                          }
+                        });
+  }
+  void increaseStonesPlaced () {
+    setState(() {
+                          data[0]['StonesPlaced'] =
+                              (data[0]['StonesPlaced'] as int) + 1;
+                          final int x = data[0]['StonesDelivered'] as int;
+                          final int y = data[0]['StonesPlaced'] as int;
+                          if (x < y)
+                            data[0]['StonesDelivered'] =
+                                (data[0]['StonesDelivered'] as int) + 1;
+                        });
+  }
+  void decreaseSkystoneBonus () {
+    setState(() {
+                          final int x = data[0]['SkyStoneBonus'];
+                          if (x > 0)
+                            data[0]['SkyStoneBonus'] =
+                                (data[0]['SkyStoneBonus'] as int) - 1;
+                        });
+  }
+  void increaseSkystoneBonus () {
+    setState(() {
+                          final int x = data[0]['SkyStoneBonus'];
+                          if (x < 2)
+                            data[0]['SkyStoneBonus'] =
+                                (data[0]['SkyStoneBonus'] as int) + 1;
+                        });
+  }
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = Platform.isIOS
@@ -82,7 +164,16 @@ class MyHomePage extends StatelessWidget {
                         appBar.preferredSize.height -
                         MediaQuery.of(context).padding.top )*0.7,
                       width: double.infinity,
-                    child: ScoreChanger(data)),
+                    child: ScoreChanger(data, updateFirstBot: updateFirstBot,
+            updateSecondBot: updateSecondBot,
+            updateFundation: updateFundation,
+            increaseSkystoneBonus: increaseSkystoneBonus,
+            increaseStonesDelivered: increaseStonesDelivered,
+            increaseStonesPlaced: increaseStonesPlaced,
+            decreaseSkystoneBonus: decreaseSkystoneBonus,
+            decreaseStonesDelivered: decreaseStonesDelivered,
+            decreaseStonesPlaced: decreaseStonesPlaced)
+                    ),
               ],
             ),
           );

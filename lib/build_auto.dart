@@ -3,7 +3,26 @@ import 'package:flutter/rendering.dart';
 
 class BuildAuto extends StatefulWidget {
   Map<String, Object> data;
-  BuildAuto(this.data);
+  Function updateFirstBot;
+  Function updateFundation;
+  Function updateSecondBot;
+  Function decreaseStonesDelivered;
+  Function increaseStonesDelivered;
+  Function decreaseStonesPlaced;
+  Function increaseStonesPlaced;
+  Function decreaseSkystoneBonus;
+  Function increaseSkystoneBonus;
+  BuildAuto(this.data,
+      {
+      @required  this.updateFirstBot,
+      @required this.updateFundation,
+      @required this.decreaseSkystoneBonus,
+      @required this.decreaseStonesDelivered,
+      @required this.decreaseStonesPlaced,
+      @required this.increaseSkystoneBonus,
+      @required this.increaseStonesDelivered,
+      @required this.increaseStonesPlaced,
+      @required this.updateSecondBot});
   @override
   _BuildAutoState createState() => _BuildAutoState();
 }
@@ -31,9 +50,7 @@ class _BuildAutoState extends State<BuildAuto> {
               Switch.adaptive(
                   value: widget.data['Fundation'],
                   onChanged: (val) {
-                    setState(() {
-                      widget.data['Fundation'] = val;
-                    });
+                    widget.updateFundation();
                   }),
             ],
           ),
@@ -43,9 +60,7 @@ class _BuildAutoState extends State<BuildAuto> {
               Text('Parked Robots: '),
               FlatButton(
                 onPressed: () {
-                  setState(() {
-                    widget.data['ParkedBots1'] = !widget.data['ParkedBots1'];
-                  });
+                  widget.updateFirstBot();
                 },
                 child: Text('First bot'),
                 color: widget.data['ParkedBots1']
@@ -54,9 +69,7 @@ class _BuildAutoState extends State<BuildAuto> {
               ),
               FlatButton(
                 onPressed: () {
-                  setState(() {
-                    widget.data['ParkedBots2'] = !widget.data['ParkedBots2'];
-                  });
+                  widget.updateSecondBot();
                 },
                 child: Text('Second bot'),
                 color: widget.data['ParkedBots2']
@@ -76,29 +89,14 @@ class _BuildAutoState extends State<BuildAuto> {
                       icon: Icon(Icons.arrow_downward),
                       color: Theme.of(context).accentColor,
                       onPressed: () {
-                        setState(() {
-                          int x = widget.data['StonesDelivered'];
-                          if (x > 0) {
-                            widget.data['StonesDelivered'] =
-                                (widget.data['StonesDelivered'] as int) - 1;
-                            x = widget.data['StonesDelivered'];
-                            final int y = widget.data['StonesPlaced'];
-                            if (x < y) {
-                              widget.data['StonesPlaced'] =
-                                  (widget.data['StonesPlaced'] as int) - 1;
-                            }
-                          }
-                        });
+                        widget.decreaseStonesDelivered();
                       }),
                   Text(widget.data['StonesDelivered'].toString()),
                   IconButton(
                       color: Theme.of(context).accentColor,
                       icon: Icon(Icons.arrow_upward),
                       onPressed: () {
-                        setState(() {
-                          widget.data['StonesDelivered'] =
-                              (widget.data['StonesDelivered'] as int) + 1;
-                        });
+                        widget.increaseStonesDelivered();
                       }),
                 ],
               ),
@@ -115,33 +113,14 @@ class _BuildAutoState extends State<BuildAuto> {
                       color: Theme.of(context).accentColor,
                       icon: Icon(Icons.remove),
                       onPressed: () {
-                        setState(() {
-                          int x = widget.data['StonesPlaced'];
-                          if (x > 0) {
-                            widget.data['StonesPlaced'] =
-                                (widget.data['StonesPlaced'] as int) - 1;
-                            x = widget.data['StonesDelivered'] as int;
-                            final int y = widget.data['StonesPlaced'] as int;
-                            if ((x < y))
-                              widget.data['StonesDelivered'] =
-                                  (widget.data['StonesDelivered'] as int) - 1;
-                          }
-                        });
+                        widget.decreaseStonesPlaced();
                       }),
                   Text(widget.data['StonesPlaced'].toString()),
                   IconButton(
                       color: Theme.of(context).accentColor,
                       icon: Icon(Icons.add),
                       onPressed: () {
-                        setState(() {
-                          widget.data['StonesPlaced'] =
-                              (widget.data['StonesPlaced'] as int) + 1;
-                          final int x = widget.data['StonesDelivered'] as int;
-                          final int y = widget.data['StonesPlaced'] as int;
-                          if (x < y)
-                            widget.data['StonesDelivered'] =
-                                (widget.data['StonesDelivered'] as int) + 1;
-                        });
+                        widget.increaseStonesPlaced();
                       })
                 ],
               )
@@ -158,24 +137,14 @@ class _BuildAutoState extends State<BuildAuto> {
                       icon: Icon(Icons.remove),
                       color: Theme.of(context).accentColor,
                       onPressed: () {
-                        setState(() {
-                          final int x = widget.data['SkyStoneBonus'];
-                          if (x > 0)
-                            widget.data['SkyStoneBonus'] =
-                                (widget.data['SkyStoneBonus'] as int) - 1;
-                        });
+                        widget.decreaseSkystoneBonus();
                       }),
                   Text(widget.data['SkyStoneBonus'].toString()),
                   IconButton(
                       icon: Icon(Icons.add),
                       color: Theme.of(context).accentColor,
                       onPressed: () {
-                        setState(() {
-                          final int x = widget.data['SkyStoneBonus'];
-                          if (x < 2)
-                            widget.data['SkyStoneBonus'] =
-                                (widget.data['SkyStoneBonus'] as int) + 1;
-                        });
+                        widget.increaseSkystoneBonus();
                       }),
                 ],
               )
