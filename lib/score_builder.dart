@@ -21,6 +21,16 @@ class ScoreChanger extends StatelessWidget {
   Function increaseSkyScraperHeight;
   Function decreaseSkyScraperHeight;
   Function assistTrigger;
+  Function moveFoundationEndGame;
+  Function parkFirstBot;
+  Function parkSecondBot;
+  Function updateCapstoneNumber;
+  Function assistTriggerCap1;
+  Function decreaseCap1;
+  Function increaseCap1;
+  Function decreaseCap2;
+  Function increaseCap2;
+  bool triggerCap1;
   bool trigger;
   ScoreChanger(this.data,
       {@required this.updateFirstBot,
@@ -40,6 +50,16 @@ class ScoreChanger extends StatelessWidget {
       @required this.increaseStonesPlacedTeleop,
       @required this.assistTrigger,
       @required this.trigger,
+      @required this.moveFoundationEndGame,
+      @required this.parkFirstBot,
+      @required this.parkSecondBot,
+      @required this.updateCapstoneNumber,
+      @required this.increaseCap1,
+      @required this.decreaseCap1,
+      @required this.assistTriggerCap1,
+      @required this.triggerCap1,
+      @required this.decreaseCap2,
+      @required this.increaseCap2,
       });
   @override
   Widget build(BuildContext context) {
@@ -74,7 +94,19 @@ class ScoreChanger extends StatelessWidget {
 
           );
         } else if (index == 2) {
-          return BuildEndGame();
+          return BuildEndGame(
+            data[index],
+            moveFoundationEndGame: moveFoundationEndGame,
+            parkFirstBot: parkFirstBot,
+            parkSecondBot: parkSecondBot,
+            updateCapstoneNumber: updateCapstoneNumber,
+            assistTriggerCap1: assistTriggerCap1,
+            decreaseCap1: decreaseCap1,
+            increaseCap1: increaseCap1,
+            triggerCap1: triggerCap1,
+            decreaseCap2: decreaseCap2,
+            increaseCap2: increaseCap2,
+          );
         }
       },
       itemCount: 3,

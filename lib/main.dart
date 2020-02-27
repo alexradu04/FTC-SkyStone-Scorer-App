@@ -54,9 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
       'StonesDelivered': 0,
       'StonesPlaced': 0,
       'SkyScraperHeight': 0,
+    },
+    {
+      'ParkedBots1':false,
+      'ParkedBots2':false,
+      'Foundation':false,
+      'Capstone1':0,
+      'Capstone2':0,
+      'CapstoneNumber': 0.0,
     }
   ];
   bool assistTrigger=false;
+  bool triggerCap1=false;
   void changeassistTrigger () {
     setState(() {
       assistTrigger=!assistTrigger;
@@ -251,7 +260,57 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
+  void moveFoundationEndGame (bool val) {
+    setState(() {
+      data[2]['Foundation'] = val;
+    });
+  }
+  void parkFirstBot () {
+    setState(() {
+    data[2]['ParkedBots1']= !data[2]['ParkedBots1'];
+    });
+  }
+  void parkSecondBot () {
+    setState(() {
+    data[2]['ParkedBots2']= !data[2]['ParkedBots2'];
+    });
+  }
+  void updateCapstoneNumber (double val) {
+    setState(() {
+      data[2]['CapstoneNumber']=val;
 
+    });
+    
+  }
+  void increaseCap1 () {
+    setState(() {
+      
+    data[2]['Capstone1']= (data[2]['Capstone1'] as int) +1;
+    });
+  }
+  void decreaseCap1 () {
+    setState(() {
+    if((data[2]['Capstone1'] as int)>0)
+        data[2]['Capstone1']= (data[2]['Capstone1'] as int) -1;
+    });
+  }
+  void assistTriggerCap1 () {
+      setState(() {
+        data[2]['Capstone1'] = data[1]['SkyScraperHeight'];
+      });
+  }
+  void increaseCap2 () {
+    setState(() {
+      
+    data[2]['Capstone2']= (data[2]['Capstone2'] as int) +1;
+    });
+  }
+  void decreaseCap2 () {
+    setState(() {
+    if((data[2]['Capstone2'] as int)>0)
+        data[2]['Capstone2']= (data[2]['Capstone2'] as int) -1;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = Platform.isIOS
@@ -297,6 +356,17 @@ class _MyHomePageState extends State<MyHomePage> {
           increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
           assistTrigger: changeassistTrigger,
           trigger: assistTrigger,
+          moveFoundationEndGame: moveFoundationEndGame,
+          parkFirstBot:parkFirstBot,
+          parkSecondBot: parkSecondBot,
+          updateCapstoneNumber: updateCapstoneNumber,
+          assistTriggerCap1: assistTriggerCap1,
+          decreaseCap1: decreaseCap1,
+          increaseCap1: increaseCap1,
+          triggerCap1: triggerCap1,
+          decreaseCap2: decreaseCap2,
+          increaseCap2: increaseCap2,
+
         ));
     final topChart = Container(
         height: (MediaQuery.of(context).size.height -
@@ -330,6 +400,16 @@ class _MyHomePageState extends State<MyHomePage> {
           increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
           assistTrigger: changeassistTrigger,
           trigger: assistTrigger,
+          moveFoundationEndGame:moveFoundationEndGame,
+          parkFirstBot:parkFirstBot,
+          parkSecondBot: parkSecondBot,
+          updateCapstoneNumber: updateCapstoneNumber,
+          assistTriggerCap1: assistTriggerCap1,
+          decreaseCap1: decreaseCap1,
+          increaseCap1: increaseCap1,
+          triggerCap1: triggerCap1,
+          decreaseCap2: decreaseCap2,
+          increaseCap2: increaseCap2,
         ));
 
     return Scaffold(
