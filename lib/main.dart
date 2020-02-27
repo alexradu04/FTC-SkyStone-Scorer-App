@@ -56,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
       'SkyScraperHeight': 0,
     }
   ];
+  bool assistTrigger=false;
+  void changeassistTrigger () {
+    setState(() {
+      assistTrigger=!assistTrigger;
+    });
+  }
   void updateFirstBot() {
     setState(() {
       data[0]['ParkedBots1'] = !(data[0]['ParkedBots1']);
@@ -83,20 +89,26 @@ class _MyHomePageState extends State<MyHomePage> {
         int y = data[0]['StonesPlaced'];
         if (x < y) {
           data[0]['StonesPlaced'] = (data[0]['StonesPlaced'] as int) - 1;
+          int aux = data[1]['StonesPlaced'];
+          if (aux > 0)
+            data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
         }
+        if((data[0]['StonesPlaced'] as int) + (data[1]['StonesPlaced'] as int) < data[1]['SkyScraperHeight'])
+          data[1]['SkyScraperHeight'] = (data[1]['SkyScraperHeight'] as int) -1;
         int z = data[0]['SkyStoneBonus'];
         if (x < z) {
           data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) - 1;
         }
-        x = data[1]['StonesDelivered'];
-        if(x>0) {
+        x = data[1]['StonesPlaced'];
+
+        /*if(x > 0) {
         data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
         x = data[1]['StonesDelivered'];
         y = data[1]['StonesPlaced'];
         if (x < y) {
           data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
         }
-        }
+        }*/
       }
     });
   }
@@ -104,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void increaseStonesDelivered() {
     setState(() {
       data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) + 1;
-      data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
+      // data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
     });
   }
 
@@ -117,12 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
         int y = data[0]['StonesPlaced'] as int;
         if ((x < y))
           data[0]['StonesDelivered'] = (data[0]['StonesDelivered'] as int) - 1;
-
-        data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
-        x = data[1]['StonesDelivered'] as int;
-        y = data[1]['StonesPlaced'] as int;
-        if ((x < y))
-          data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
+        x = data[1]['StonesPlaced'];
+        if (x > 0) {
+          data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        }
+        if( (data[1]['StonesPlaced'] as int) + (data[0]['StonesPlaced'] as int) < (data[1]['SkyScraperHeight'] as int)) {
+          data[1]['SkyScraperHeight'] = (data[1]['SkyScraperHeight'] as int) -1;
+        }
       }
     });
   }
@@ -137,8 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
       data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
       x = data[1]['StonesDelivered'] as int;
       y = data[1]['StonesPlaced'] as int;
-      if (x < y)
-        data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
     });
   }
 
@@ -153,12 +164,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void increaseSkystoneBonus() {
     setState(() {
       int x = data[0]['SkyStoneBonus'];
-      if (x < 2)
+      if (x < 2) {
         data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) + 1;
-      x = data[0]['SkyStoneBonus'];
-      int y = data[0]['StonesPlaced'];
-      if (x > y) {
-        increaseStonesPlaced();
+        x = data[0]['StonesDelivered'];
+        if (x < 2) {
+          increaseStonesDelivered();
+        }
       }
     });
   }
@@ -168,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
       data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
       final int x = data[1]['StonesDelivered'] as int;
       final int y = data[1]['StonesPlaced'] as int;
-      if (x < y)
+      if (x + (data[0]['StonesDelivered']) < y)
         data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
     });
   }
@@ -181,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
         x = data[1]['StonesDelivered'] as int;
         final int y = data[1]['StonesPlaced'] as int;
         final int z = data[1]['SkyScraperHeight'];
-        if ((y < z))
+        if ((y + data[0]['StonesPlaced'] < z) && z > 0)
           data[1]['SkyScraperHeight'] =
               (data[1]['SkyScraperHeight'] as int) - 1;
       }
@@ -202,11 +213,11 @@ class _MyHomePageState extends State<MyHomePage> {
         x = data[1]['StonesDelivered'];
         int y = data[1]['StonesPlaced'];
         int z = data[1]['SkyScraperHeight'];
-        if (x < y) {
+        if (x +(data[0]['StonesPlaced'] as int) < y) {
           data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
         }
         y = data[1]['StonesPlaced'];
-        if (y < z) {
+        if (y + data[0]['StonesPlaced'] < z) {
           data[1]['SkyScraperHeight'] =
               (data[1]['SkyScraperHeight'] as int) - 1;
         }
@@ -217,15 +228,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void increaseSkyScraperHeight() {
     setState(() {
       data[1]['SkyScraperHeight'] = (data[1]['SkyScraperHeight'] as int) + 1;
+      if(assistTrigger) {
       int x = data[1]['SkyScraperHeight'] as int;
       int y = data[1]['StonesDelivered'] as int;
       int z = data[1]['StonesPlaced'] as int;
       if (x > y) {
         data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) + 1;
       }
-      if (x > z) {
+      if (x > z ) {
         data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) + 1;
-      }
+      }}
     });
   }
 
@@ -255,17 +267,17 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Theme.of(context).primaryColor,
           );
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-    final topChartLandscape=Container(
+    final topChartLandscape = Container(
         height: (MediaQuery.of(context).size.height -
-                appBar.preferredSize.height -
-                MediaQuery.of(context).padding.top) ,
-        width: MediaQuery.of(context).size.width *0.5,
+            appBar.preferredSize.height -
+            MediaQuery.of(context).padding.top),
+        width: MediaQuery.of(context).size.width * 0.5,
         child: ScoreShower(data));
-      final trueBodyLandscape=Container(
+    final trueBodyLandscape = Container(
         height: (MediaQuery.of(context).size.height -
-                appBar.preferredSize.height -
-                MediaQuery.of(context).padding.top) ,
-        width: MediaQuery.of(context).size.width *0.5,
+            appBar.preferredSize.height -
+            MediaQuery.of(context).padding.top),
+        width: MediaQuery.of(context).size.width * 0.5,
         child: ScoreChanger(
           data,
           updateFirstBot: updateFirstBot,
@@ -283,7 +295,9 @@ class _MyHomePageState extends State<MyHomePage> {
           increaseSkyScraperHeight: increaseSkyScraperHeight,
           increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
           increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
-        )); 
+          assistTrigger: changeassistTrigger,
+          trigger: assistTrigger,
+        ));
     final topChart = Container(
         height: (MediaQuery.of(context).size.height -
                 appBar.preferredSize.height -
@@ -314,22 +328,18 @@ class _MyHomePageState extends State<MyHomePage> {
           increaseSkyScraperHeight: increaseSkyScraperHeight,
           increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
           increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
+          assistTrigger: changeassistTrigger,
+          trigger: assistTrigger,
         ));
-    
-    
 
     return Scaffold(
-      appBar: appBar,
-      body: isPortrait ? Column(
-        children: <Widget>[
-           topChart, 
-           trueBody 
-        ],
-      ):
-      Row(children: <Widget>[
-        topChartLandscape,
-        trueBodyLandscape
-      ],)
-    );
+        appBar: appBar,
+        body: isPortrait
+            ? Column(
+                children: <Widget>[topChart, trueBody],
+              )
+            : Row(
+                children: <Widget>[topChartLandscape, trueBodyLandscape],
+              ));
   }
 }

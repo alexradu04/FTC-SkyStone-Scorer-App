@@ -20,6 +20,8 @@ class ScoreChanger extends StatelessWidget {
   Function decreaseStonesDeliveredTeleop;
   Function increaseSkyScraperHeight;
   Function decreaseSkyScraperHeight;
+  Function assistTrigger;
+  bool trigger;
   ScoreChanger(this.data,
       {@required this.updateFirstBot,
       @required this.updateFundation,
@@ -36,7 +38,8 @@ class ScoreChanger extends StatelessWidget {
       @required this.increaseSkyScraperHeight,
       @required this.increaseStonesDeliveredTeleop,
       @required this.increaseStonesPlacedTeleop,
-      
+      @required this.assistTrigger,
+      @required this.trigger,
       });
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,7 @@ class ScoreChanger extends StatelessWidget {
             decreaseSkystoneBonus: decreaseSkystoneBonus,
             decreaseStonesDelivered: decreaseStonesDelivered,
             decreaseStonesPlaced: decreaseStonesPlaced,
+          
           );
         } else if (index == 1) {
           return BuildTeleop(
@@ -64,6 +68,9 @@ class ScoreChanger extends StatelessWidget {
              increaseSkyScraperHeight: increaseSkyScraperHeight,
              increaseStonesDeliveredTeleop:increaseStonesDeliveredTeleop,
              increaseStonesPlacedTeleop : increaseStonesPlacedTeleop,
+             assistTrigger: assistTrigger,
+             
+            trigger: trigger,
 
           );
         } else if (index == 2) {

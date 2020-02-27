@@ -8,6 +8,8 @@ class BuildTeleop extends StatefulWidget {
   Function decreaseStonesDeliveredTeleop;
   Function increaseSkyScraperHeight;
   Function decreaseSkyScraperHeight;
+  Function assistTrigger;
+  bool trigger;
   BuildTeleop(this.data,
       {
       @required this.decreaseSkyScraperHeight,
@@ -16,6 +18,8 @@ class BuildTeleop extends StatefulWidget {
       @required this.increaseSkyScraperHeight,
       @required this.increaseStonesDeliveredTeleop,
       @required this.increaseStonesPlacedTeleop,
+      @required this.trigger,
+      @required this.assistTrigger
       
       });
   @override
@@ -109,6 +113,13 @@ class _BuildTeleopState extends State<BuildTeleop> {
                  widget.increaseSkyScraperHeight();
                },
             ),
+            RaisedButton(
+              child: Text('Toggle assist'),
+              color: widget.trigger ? Theme.of(context).accentColor : Colors.grey,
+              onPressed: () {
+                widget.assistTrigger();
+              }
+              )
               ],)
               
             ]),

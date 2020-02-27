@@ -12,6 +12,7 @@ class BuildAuto extends StatefulWidget {
   Function increaseStonesPlaced;
   Function decreaseSkystoneBonus;
   Function increaseSkystoneBonus;
+  
   BuildAuto(this.data,
       {
       @required  this.updateFirstBot,
@@ -22,7 +23,8 @@ class BuildAuto extends StatefulWidget {
       @required this.increaseSkystoneBonus,
       @required this.increaseStonesDelivered,
       @required this.increaseStonesPlaced,
-      @required this.updateSecondBot});
+      @required this.updateSecondBot,
+      });
   @override
   _BuildAutoState createState() => _BuildAutoState();
 }
