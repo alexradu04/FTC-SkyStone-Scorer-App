@@ -88,11 +88,14 @@ class _MyHomePageState extends State<MyHomePage> {
         if (x < z) {
           data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) - 1;
         }
+        x = data[1]['StonesDelivered'];
+        if(x>0) {
         data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
         x = data[1]['StonesDelivered'];
         y = data[1]['StonesPlaced'];
         if (x < y) {
           data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
+        }
         }
       }
     });

@@ -34,7 +34,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Theme.of(context).accentColor,
+                color: Colors.orange,
           ),),
           Row(
             
@@ -46,7 +46,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
               children: <Widget>[
               IconButton(
               icon: Icon(Icons.remove),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.decreaseStonesDeliveredTeleop();
                },
@@ -54,7 +54,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
             Text(widget.data['StonesDelivered'].toString()),
             IconButton(
               icon: Icon(Icons.add),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.increaseStonesDeliveredTeleop();
                },
@@ -71,7 +71,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
                 children: <Widget>[
                 IconButton(
               icon: Icon(Icons.remove),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.decreaseStonesPlacedTeleop();
                },
@@ -79,7 +79,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
             Text(widget.data['StonesPlaced'].toString()),
             IconButton(
               icon: Icon(Icons.add),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.increaseStonesPlacedTeleop();
                },
@@ -96,7 +96,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
                 children: <Widget>[
                 IconButton(
               icon: Icon(Icons.remove),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.decreaseSkyScraperHeight();
                },
@@ -104,7 +104,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
             Text(widget.data['SkyScraperHeight'].toString()),
             IconButton(
               icon: Icon(Icons.add),
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
                onPressed: () {
                  widget.increaseSkyScraperHeight();
                },
