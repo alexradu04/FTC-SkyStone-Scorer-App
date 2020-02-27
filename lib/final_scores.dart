@@ -13,7 +13,13 @@ class ScoreShower extends StatelessWidget {
     sum += (data[0]['SkyStoneBonus'] as int) * 8;
     return sum;
   }
-
+  int get teleopData {
+    int sum=0;
+    sum+=data[1]['StonesDelivered'] as int;
+    sum+=data[1]['StonesPlaced'] as int;
+    sum+=(data[1]['SkyScraperHeight'] as int) *2;
+    return sum;
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,13 +47,13 @@ class ScoreShower extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  Text('Autonomus',
+                  Text('Tele-OP',
                     style: TextStyle(
                         color: Colors.orange,
                         fontSize: 20,
                         ),),
                   Text(
-                    autoData.toString(),
+                    teleopData.toString(),
                     style: TextStyle(
                         color: Colors.orange,
                         fontSize: 20,
@@ -57,7 +63,7 @@ class ScoreShower extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  Text('Autonomus',
+                  Text('EndGame',
                     style: TextStyle(
                         color: Colors.red,
                         fontSize: 20,
@@ -72,7 +78,11 @@ class ScoreShower extends StatelessWidget {
                 ],
               )
             ],
-          )
+          ),
+          Column(children:<Widget>[
+            Text('Total',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+            Text('125',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+          ])
         ]));
   }
 }

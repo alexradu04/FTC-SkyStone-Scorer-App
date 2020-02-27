@@ -25,6 +25,94 @@ class BuildTeleop extends StatefulWidget {
 class _BuildTeleopState extends State<BuildTeleop> {
   @override
   Widget build(BuildContext context) {
-    return Card(child: Text('data'));
+    return Card(
+      elevation: 6,
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children:<Widget>[
+          Text('Tele-OP',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Theme.of(context).accentColor,
+          ),),
+          Row(
+            
+            children: <Widget>[
+            SizedBox(width:13),
+            Text('Stones delivered: '),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+              IconButton(
+              icon: Icon(Icons.remove),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.decreaseStonesDeliveredTeleop();
+               },
+            ),
+            Text(widget.data['StonesDelivered'].toString()),
+            IconButton(
+              icon: Icon(Icons.add),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.increaseStonesDeliveredTeleop();
+               },
+            ),
+            ],)
+          ],),
+          Row(
+            
+            children:<Widget>[
+              SizedBox(width:13),
+              Text('Stones placed: '),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                IconButton(
+              icon: Icon(Icons.remove),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.decreaseStonesPlacedTeleop();
+               },
+            ),
+            Text(widget.data['StonesPlaced'].toString()),
+            IconButton(
+              icon: Icon(Icons.add),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.increaseStonesPlacedTeleop();
+               },
+            ),
+              ],)
+            ]),
+            Row(
+            
+            children:<Widget>[
+              SizedBox(width:13),
+              Text('Skyscraper height: '),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                IconButton(
+              icon: Icon(Icons.remove),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.decreaseSkyScraperHeight();
+               },
+            ),
+            Text(widget.data['SkyScraperHeight'].toString()),
+            IconButton(
+              icon: Icon(Icons.add),
+              color: Theme.of(context).accentColor,
+               onPressed: () {
+                 widget.increaseSkyScraperHeight();
+               },
+            ),
+              ],)
+              
+            ]),
+      ]),
+    );
   }
 }

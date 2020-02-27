@@ -84,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
         if (x < y) {
           data[0]['StonesPlaced'] = (data[0]['StonesPlaced'] as int) - 1;
         }
+        int z = data[0]['SkyStoneBonus'];
+        if (x < z) {
+          data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) - 1;
+        }
         data[1]['StonesDelivered'] = (data[1]['StonesDelivered'] as int) - 1;
         x = data[1]['StonesDelivered'];
         y = data[1]['StonesPlaced'];
@@ -145,9 +149,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void increaseSkystoneBonus() {
     setState(() {
-      final int x = data[0]['SkyStoneBonus'];
+      int x = data[0]['SkyStoneBonus'];
       if (x < 2)
         data[0]['SkyStoneBonus'] = (data[0]['SkyStoneBonus'] as int) + 1;
+      x = data[0]['SkyStoneBonus'];
+      int y = data[0]['StonesPlaced'];
+      if (x > y) {
+        increaseStonesPlaced();
+      }
     });
   }
 
@@ -193,6 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
         if (x < y) {
           data[1]['StonesPlaced'] = (data[1]['StonesPlaced'] as int) - 1;
         }
+        y = data[1]['StonesPlaced'];
         if (y < z) {
           data[1]['SkyScraperHeight'] =
               (data[1]['SkyScraperHeight'] as int) - 1;
@@ -241,48 +251,82 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             backgroundColor: Theme.of(context).primaryColor,
           );
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final topChartLandscape=Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) ,
+        width: MediaQuery.of(context).size.width *0.5,
+        child: ScoreShower(data));
+      final trueBodyLandscape=Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) ,
+        width: MediaQuery.of(context).size.width *0.5,
+        child: ScoreChanger(
+          data,
+          updateFirstBot: updateFirstBot,
+          updateSecondBot: updateSecondBot,
+          updateFundation: updateFundation,
+          increaseSkystoneBonus: increaseSkystoneBonus,
+          increaseStonesDelivered: increaseStonesDelivered,
+          increaseStonesPlaced: increaseStonesPlaced,
+          decreaseSkystoneBonus: decreaseSkystoneBonus,
+          decreaseStonesDelivered: decreaseStonesDelivered,
+          decreaseStonesPlaced: decreaseStonesPlaced,
+          decreaseSkyScraperHeight: decreaseSkyScraperHeight,
+          decreaseStonesDeliveredTeleop: decreaseStonesDeliveredTeleop,
+          decreaseStonesPlacedTeleop: decreaseStonesPlacedTeleop,
+          increaseSkyScraperHeight: increaseSkyScraperHeight,
+          increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
+          increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
+        )); 
+    final topChart = Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) *
+            0.2,
+        width: double.infinity,
+        child: ScoreShower(data));
+    final trueBody = Container(
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.top) *
+            0.80,
+        width: double.infinity,
+        child: ScoreChanger(
+          data,
+          updateFirstBot: updateFirstBot,
+          updateSecondBot: updateSecondBot,
+          updateFundation: updateFundation,
+          increaseSkystoneBonus: increaseSkystoneBonus,
+          increaseStonesDelivered: increaseStonesDelivered,
+          increaseStonesPlaced: increaseStonesPlaced,
+          decreaseSkystoneBonus: decreaseSkystoneBonus,
+          decreaseStonesDelivered: decreaseStonesDelivered,
+          decreaseStonesPlaced: decreaseStonesPlaced,
+          decreaseSkyScraperHeight: decreaseSkyScraperHeight,
+          decreaseStonesDeliveredTeleop: decreaseStonesDeliveredTeleop,
+          decreaseStonesPlacedTeleop: decreaseStonesPlacedTeleop,
+          increaseSkyScraperHeight: increaseSkyScraperHeight,
+          increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
+          increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
+        ));
+    
+    
 
-    return Platform.isIOS
-        ? CupertinoPageScaffold(
-            child: ScoreShower(data),
-            navigationBar: appBar,
-          )
-        : Scaffold(
-            appBar: appBar,
-            body: Column(
-              children: <Widget>[
-                Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        0.3,
-                    width: double.infinity,
-                    child: ScoreShower(data)),
-                Container(
-                    height: (MediaQuery.of(context).size.height -
-                            appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
-                        0.7,
-                    width: double.infinity,
-                    child: ScoreChanger(data,
-                        updateFirstBot: updateFirstBot,
-                        updateSecondBot: updateSecondBot,
-                        updateFundation: updateFundation,
-                        increaseSkystoneBonus: increaseSkystoneBonus,
-                        increaseStonesDelivered: increaseStonesDelivered,
-                        increaseStonesPlaced: increaseStonesPlaced,
-                        decreaseSkystoneBonus: decreaseSkystoneBonus,
-                        decreaseStonesDelivered: decreaseStonesDelivered,
-                        decreaseStonesPlaced: decreaseStonesPlaced,
-                        decreaseSkyScraperHeight: decreaseSkyScraperHeight,
-                        decreaseStonesDeliveredTeleop: decreaseStonesDeliveredTeleop,
-                        decreaseStonesPlacedTeleop: decreaseStonesPlacedTeleop,
-                        increaseSkyScraperHeight: increaseSkyScraperHeight,
-                        increaseStonesDeliveredTeleop: increaseStonesDeliveredTeleop,
-                        increaseStonesPlacedTeleop: increaseStonesPlacedTeleop,
-                        )),
-              ],
-            ),
-          );
+    return Scaffold(
+      appBar: appBar,
+      body: isPortrait ? Column(
+        children: <Widget>[
+           topChart, 
+           trueBody 
+        ],
+      ):
+      Row(children: <Widget>[
+        topChartLandscape,
+        trueBodyLandscape
+      ],)
+    );
   }
 }
