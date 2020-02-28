@@ -66,6 +66,28 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   bool assistTrigger=false;
   bool triggerCap1=false;
+  void resetScores () {
+    setState(() {
+      data[0]['Fundation']= false;
+      data[0]['ParkedBots1']= false;
+      data[0]['ParkedBots2']= false;
+      data[0]['StonesDelivered']= 0;
+      data[0]['StonesPlaced']= 0;
+      data[0]['SkyStoneBonus']= 0;
+
+      data[1]['StonesDelivered']= 0;
+      data[1]['StonesPlaced']= 0;
+      data[1]['SkyScraperHeight']= 0;
+
+
+      data[2]['Foundation']= false;
+      data[2]['ParkedBots1']= false;
+      data[2]['ParkedBots2']= false;
+      data[2]['Capstone1']= 0;
+      data[2]['Capstone2']= 0;
+      data[2]['CapstoneNumber']= 0.0;
+    });
+  }
   void changeassistTrigger () {
     setState(() {
       assistTrigger=!assistTrigger;
@@ -323,6 +345,12 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text(
               'FTC Scorer',
             ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.refresh), 
+                onPressed: resetScores
+              )
+            ],
             backgroundColor: Theme.of(context).primaryColor,
           );
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;

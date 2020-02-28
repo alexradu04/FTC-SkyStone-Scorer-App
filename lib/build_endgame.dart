@@ -102,7 +102,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
         Row(children: <Widget>[
           SizedBox(width:13),
           Text('Capstones: '),
-          Slider.adaptive(
+          Slider(
             value: widget.data['CapstoneNumber'],
             onChanged: (val) {
               widget.updateCapstoneNumber(val);

@@ -97,7 +97,7 @@ class ScoreShower extends StatelessWidget {
           ),
           Column(children:<Widget>[
             Text('Total',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-            Text('125',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+            Text((autoData + teleopData + endgameData).toString(),style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
           ])
         ]));
   }
