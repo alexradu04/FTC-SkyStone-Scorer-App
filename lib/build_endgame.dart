@@ -69,7 +69,8 @@ class _BuildEndGameState extends State<BuildEndGame> {
                 value: widget.data['Foundation'],
                  onChanged: (val) {
                     widget.moveFoundationEndGame(val);
-                 }
+                 },
+                 activeColor: Colors.red,
                 )
             ]
           ),
