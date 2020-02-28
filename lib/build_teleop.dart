@@ -115,7 +115,7 @@ class _BuildTeleopState extends State<BuildTeleop> {
             ),
             RaisedButton(
               child: Text('Toggle assist'),
-              color: widget.trigger ? Theme.of(context).accentColor : Colors.grey,
+              color: widget.trigger ? Colors.orange : Colors.grey,
               onPressed: () {
                 widget.assistTrigger();
               }

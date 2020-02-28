@@ -86,7 +86,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
                 },
                 child: Text('First bot'),
                 color: widget.data['ParkedBots1']
-                    ? Theme.of(context).accentColor
+                    ? Colors.red
                     : Colors.grey,
               ),
               FlatButton(
@@ -95,7 +95,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
                 },
                 child: Text('Second bot'),
                 color: widget.data['ParkedBots2']
-                    ? Theme.of(context).accentColor
+                    ? Colors.red
                     : Colors.grey,
               ),
             ],
@@ -141,7 +141,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
             ),
             RaisedButton(
               child: Text('Assist'),
-              color: widget.triggerCap1 ? Theme.of(context).accentColor : Colors.grey,
+              color: widget.triggerCap1 ? Colors.red : Colors.grey,
               onPressed: () {
                 widget.assistTriggerCap1();
               }
