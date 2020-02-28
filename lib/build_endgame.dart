@@ -161,7 +161,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
                 children: <Widget>[
                 IconButton(
               icon: Icon(Icons.remove),
-              color: Colors.orange,
+              color: Colors.red,
                onPressed: () {
                  widget.decreaseCap2();
                },
@@ -169,7 +169,7 @@ class _BuildEndGameState extends State<BuildEndGame> {
             Text(widget.data['Capstone2'].toString()),
             IconButton(
               icon: Icon(Icons.add),
-              color: Colors.orange,
+              color: Colors.red,
                onPressed: () {
                  widget.increaseCap2();
                },
