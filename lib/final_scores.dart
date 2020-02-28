@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math';
+import 'dart:core';
 class ScoreShower extends StatelessWidget {
   List<Map<String, Object>> data;
   ScoreShower(this.data);
@@ -18,6 +19,21 @@ class ScoreShower extends StatelessWidget {
     sum+=data[1]['StonesDelivered'] as int;
     sum+=data[1]['StonesPlaced'] as int;
     sum+=(data[1]['SkyScraperHeight'] as int) *2;
+    return sum;
+  }
+  int get endgameData {
+    int sum=0;
+    sum+= 5*((data[2]['CapstoneNumber']as double).toInt());
+    if((data[2]['CapstoneNumber'] as double).toInt() >=1)
+      sum+=data[2]['Capstone1'];
+    if((data[2]['CapstoneNumber'] as double).toInt() >=2)
+      sum+=data[2]['Capstone2'];
+    if(data[2]['ParkedBots1'])
+      sum+=5;
+    if(data[2]['ParkedBots2'])
+      sum+=5;
+    if(data[2]['Foundation'])
+      sum+=10;
     return sum;
   }
   @override
@@ -69,7 +85,7 @@ class ScoreShower extends StatelessWidget {
                         fontSize: 20,
                         ),),
                   Text(
-                    autoData.toString(),
+                    endgameData.toString(),
                     style: TextStyle(
                         color: Colors.red,
                         fontSize: 20,
