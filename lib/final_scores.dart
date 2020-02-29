@@ -35,7 +35,7 @@ class ScoreShower extends StatelessWidget {
     if(data[2]['ParkedBots2'])
       sum+=5;
     if(data[2]['Foundation'])
-      sum+=10;
+      sum+=15;
     return sum;
   }
   @override
