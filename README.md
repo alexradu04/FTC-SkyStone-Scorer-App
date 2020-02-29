@@ -10,6 +10,8 @@ This is a simple app build to keep track of SkyStone scores super efficiently an
   The app is build using the Flutter SDK and dart, therefore it is able to run on both mobile platforms.
 - Smart Scoring <br>
   The app uses smartly written code in order to auto-complete fields that you would have to normally modify by yourself.
+- Dark theme <br>
+  The app now provides a system-native dark theme, which updates dynamically based on your operating system's theme.
   
 ## Description
 
