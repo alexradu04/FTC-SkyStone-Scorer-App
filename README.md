@@ -1,4 +1,4 @@
-# scorer1
+# SkyStone Scorer
 
 A new Flutter project.
 
