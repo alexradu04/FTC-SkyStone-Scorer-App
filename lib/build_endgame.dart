@@ -113,7 +113,8 @@ class _BuildEndGameState extends State<BuildEndGame> {
             max:2.0,
             divisions: 2,
             label: widget.data['CapstoneNumber'].toString(),
-            )          
+            ),
+            Text((widget.data['CapstoneNumber'] as double).toStringAsFixed(0))      
         ],),
         if(numberOfCapstones>=1)
            Row(
