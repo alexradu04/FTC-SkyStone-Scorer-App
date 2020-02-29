@@ -1,16 +1,22 @@
-# scorer1
+# SkyStone Scorer
 
 A new Flutter project.
 
-## Getting Started
+This is a simple app build to keep track of SkyStone scores super efficiently and super fast.
 
-This project is a starting point for a Flutter application.
+## Features:
 
-A few resources to get you started if this is your first Flutter project:
+- Cross-platform (IOS/Android available):<br>
+  The app is build using the Flutter SDK and dart, therefore it is able to run on both mobile platforms.
+- Smart Scoring <br>
+  The app uses smartly written code in order to auto-complete fields that you would have to normally modify by yourself.
+  
+## Description
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This is just a simple project to help me experiment with the Flutter SDK and Dart programming language, as I have never built an app using flutter before.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## App Preview
+
+<p align="center">
+   <image src="https://media.giphy.com/media/QTyYcQcNHPhwr1pvFz/giphy.gif" width="200">
+</p>
