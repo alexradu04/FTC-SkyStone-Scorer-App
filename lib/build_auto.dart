@@ -42,7 +42,7 @@ class _BuildAutoState extends State<BuildAuto> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: Theme.of(context).accentColor,
+              color: Colors.green,
             ),
           ),
           Row(
@@ -66,7 +66,7 @@ class _BuildAutoState extends State<BuildAuto> {
                 },
                 child: Text('First bot'),
                 color: widget.data['ParkedBots1']
-                    ? Theme.of(context).accentColor
+                    ? Colors.green
                     : Colors.grey,
               ),
               FlatButton(
@@ -75,7 +75,7 @@ class _BuildAutoState extends State<BuildAuto> {
                 },
                 child: Text('Second bot'),
                 color: widget.data['ParkedBots2']
-                    ? Theme.of(context).accentColor
+                    ? Colors.green
                     : Colors.grey,
               ),
             ],
@@ -89,13 +89,13 @@ class _BuildAutoState extends State<BuildAuto> {
                   Text('Stones Delivered:'),
                   IconButton(
                       icon: Icon(Icons.remove),
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       onPressed: () {
                         widget.decreaseStonesDelivered();
                       }),
                   Text(widget.data['StonesDelivered'].toString()),
                   IconButton(
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       icon: Icon(Icons.add),
                       onPressed: () {
                         widget.increaseStonesDelivered();
@@ -112,14 +112,14 @@ class _BuildAutoState extends State<BuildAuto> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       icon: Icon(Icons.remove),
                       onPressed: () {
                         widget.decreaseStonesPlaced();
                       }),
                   Text(widget.data['StonesPlaced'].toString()),
                   IconButton(
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       icon: Icon(Icons.add),
                       onPressed: () {
                         widget.increaseStonesPlaced();
@@ -137,14 +137,14 @@ class _BuildAutoState extends State<BuildAuto> {
                 children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.remove),
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       onPressed: () {
                         widget.decreaseSkystoneBonus();
                       }),
                   Text(widget.data['SkyStoneBonus'].toString()),
                   IconButton(
                       icon: Icon(Icons.add),
-                      color: Theme.of(context).accentColor,
+                      color: Colors.green,
                       onPressed: () {
                         widget.increaseSkystoneBonus();
                       }),

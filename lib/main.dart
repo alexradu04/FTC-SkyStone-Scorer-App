@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FTC Scorer',
       theme: ThemeData(
-          primarySwatch: Colors.blue[1000],
+          primaryColor: Colors.blue.withBlue(147).withRed(29).withGreen(66),
+          //primarySwatch: Colors.blue,
           accentColor: Colors.green,
           errorColor: Colors.red,
           fontFamily: 'QuickSand',
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
                     fontFamily: 'OpenSans',
                     fontSize: 20,
                   )))),
+      darkTheme: ThemeData.dark(),
       home: MyHomePage(),
     );
   }
@@ -351,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: resetScores
               )
             ],
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).primaryColor.withBlue(147).withRed(29).withGreen(66),
           );
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     final topChartLandscape = Container(

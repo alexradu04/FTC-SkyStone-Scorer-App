@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:core';
+
+import 'package:flutter/rendering.dart';
 class ScoreShower extends StatelessWidget {
   List<Map<String, Object>> data;
   ScoreShower(this.data);
@@ -49,13 +51,13 @@ class ScoreShower extends StatelessWidget {
                 children: <Widget>[
                   Text('Autonomus',
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Colors.green,
                         fontSize: 20,
                         ),),
                   Text(
                     autoData.toString(),
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Colors.green,
                         fontSize: 20,
                         ),
                   ),
@@ -96,8 +98,8 @@ class ScoreShower extends StatelessWidget {
             ],
           ),
           Column(children:<Widget>[
-            Text('Total',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-            Text((autoData + teleopData + endgameData).toString(),style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+            Text('Total',style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            Text((autoData + teleopData + endgameData).toString(),style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           ])
         ]));
   }
