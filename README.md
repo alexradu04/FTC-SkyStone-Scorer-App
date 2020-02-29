@@ -21,4 +21,5 @@ This is just a simple project to help me experiment with the Flutter SDK and Dar
 
 <p align="center">
    <image src="https://media.giphy.com/media/QTyYcQcNHPhwr1pvFz/giphy.gif" width="200">
+   <image src="https://media.giphy.com/media/TdQYY4QXtuFhGycWif/giphy.gif" width="200">
 </p>
