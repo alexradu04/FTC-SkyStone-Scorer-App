@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-This is a simple app build to keep track of SkyStone scores super efficiently and super fast.
+This is a simple app built to keep track of SkyStone scores super efficiently and super fast.
 
 ## Features:
 
